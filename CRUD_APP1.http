@@ -1,6 +1,22 @@
 @CRUD_APP1_HostAddress = http://localhost:5136
 
-GET {{CRUD_APP1_HostAddress}}/weatherforecast/
+### Create a product
+POST {{CRUD_APP1_HostAddress}}/Product
+Content-Type: application/json
+
+{
+    "id": 1,
+    "name": "Keyboard",
+    "price": 1500,
+    "quantity": 5
+}
+
+### Get all products
+GET {{CRUD_APP1_HostAddress}}/Product
+Accept: application/json
+
+### Get product by ID
+GET {{CRUD_APP1_HostAddress}}/Product/1
 Accept: application/json
 
 ###
