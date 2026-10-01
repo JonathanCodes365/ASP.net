@@ -77,4 +77,36 @@ public class ProductController : ControllerBase
         products.Add(product);
         return product;
     }
+
+    [HttpPut("{id}")]
+    public ActionResult<Product> UpdateProduct(int id, Product updatedProduct)
+    {
+        //ActionResult gives us this ability to return either HTTP requests such as 404 NOT found or proper Product Results.
+        var product = products.FirstOrDefault(p=>p.Id==id);
+
+        if (product == null)
+        {
+            return NotFound();
+        }
+        product.Name = updatedProduct.Name;
+        product.Price = updatedProduct.Price;
+        product.Quantity = updatedProduct.Quantity;
+
+        return product;
+
+    }
+
+    [HttpDelete("{id}")]
+    public ActionResult DeleteProduct(int id)
+    {
+        var product =products.FirstOrDefault(p=>p.Id==id);
+
+        if (product == null)
+        {
+            return NotFound();
+        }
+        products.Remove(product);
+        return NoContent();
+        //if the request is success: there is no content to send back-- result:204 No content
+    }
 }
